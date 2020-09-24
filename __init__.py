@@ -4,7 +4,6 @@ This app implements a money tracking tool and exposes a RESTful API meant to be 
 import os
 from flask import Flask, redirect, url_for
 from db import get_db
-from flask_login import LoginManager
 
 def create_app(test_config=None):
     # Create and configure the app
