@@ -1,5 +1,4 @@
 flask
-jsonlib
 bson
 pymongo
 Flask-WTF
