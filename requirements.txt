@@ -1,3 +1,4 @@
+Flask-Table
 gunicorn==19.0.0
 flask
 bson
