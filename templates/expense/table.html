@@ -1,0 +1,31 @@
+<doctype html="">
+    <head>
+    <style>
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+        
+        th, td {
+          text-align: center;
+          padding: 8px;
+        }
+        
+        tr:nth-child(even){background-color: #db8e70de}
+        
+        th {
+          background-color: #4CAF50;
+          color: white;
+        }
+    </style>
+    </head>
+    <body>
+        <title>Table - Expense Tracker</title>
+        <h1 style="text-align:center">List of Expenses</h1>
+    {{ table }}
+    <br>
+    <form action="{{ url_for('expense.select_operation') }}">
+        <input type="submit" value="Menu" />
+    </form>
+    </body>
+</doctype>
