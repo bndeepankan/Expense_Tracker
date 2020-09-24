@@ -1,0 +1,10 @@
+{
+  "buildpacks": [
+    {
+      "url": "https://github.com/bndeepankan/Expense_Tracker"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
+}
