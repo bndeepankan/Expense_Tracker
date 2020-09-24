@@ -3,10 +3,10 @@ from flask import(
 )
 from werkzeug.exceptions import abort
 
-from auth import login_required
-from db import get_db
-from table import Results, readResults, deleteResult
-from forms import Expenseform
+from .auth import login_required
+from .db import get_db
+from .table import Results, readResults, deleteResult
+from .forms import Expenseform
 from collections import defaultdict
 from bson import ObjectId
 
