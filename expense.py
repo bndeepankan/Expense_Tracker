@@ -3,10 +3,10 @@ from flask import(
 )
 from werkzeug.exceptions import abort
 
-from Expense_Tracker.auth import login_required
-from Expense_Tracker.db import get_db
-from Expense_Tracker.table import Results, readResults, deleteResult
-from Expense_Tracker.forms import Expenseform
+from .auth import login_required
+from .db import get_db
+from .table import Results, readResults, deleteResult
+from .forms import Expenseform
 from collections import defaultdict
 from bson import ObjectId
 
