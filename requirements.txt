@@ -1,7 +1,6 @@
 flask
 jsonlib
 bson
-functools
 pymongo
 Flask-WTF
 dnspython
