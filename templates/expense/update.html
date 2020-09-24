@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Update Expense{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <p>Enter any of the options or click "submit" to view entire expense</p>
+    <form method="post">
+        <label for="date">Date (eg.dd/mm/yyyy)</label>
+        <input name="date" id="date">
+        <label for="value">Value</label>
+        <input name="value" id="value">
+        <label for="item">Item</label>
+        <input name="item" id="item">
+        <div style="width:400px;">
+          <div style="float: left; width: 130px">
+              <input type="submit" value="Submit">
+          </div>
+          <div style="float: right; width: 225px">
+              <input type="submit" value="Menu" formaction="{{ url_for('expense.select_operation') }}">
+          </div>
+        </div>
+    </form>
+{% endblock %}

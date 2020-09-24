@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Delete Operation{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <p>Are you sure?</p>
+    <form method="post">
+        Yes <input type="radio" value="yes" name="mycheckbox">
+        No <input type="radio" value="no" name="mycheckbox">
+        <input type="submit">
+    </form>
+{% endblock %}

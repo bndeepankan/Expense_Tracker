@@ -1,0 +1,7 @@
+flask
+json
+bson
+functools
+pymongo
+Flask-WTF
+dnspython
