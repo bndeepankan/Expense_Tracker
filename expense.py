@@ -3,16 +3,17 @@ from flask import(
 )
 from werkzeug.exceptions import abort
 
-from auth import login_required
-from db import get_db
-from table import Results, readResults, deleteResult
-from forms import Expenseform
+from .auth import login_required
+from .db import get_db
+from .table import Results, readResults, deleteResult
+from .forms import Expenseform
 from collections import defaultdict
 from bson import ObjectId
 
 bp = Blueprint('expense', __name__)
 
-@bp.route('/', methods=['GET', 'POST'])
+@bp.route('/select_expense/', methods=['GET', 'POST'])
+@login_required
 def select_operation():
     """
     Select the type of CURD operation to be performed
@@ -129,7 +130,7 @@ def edit_expense(id):
     return render_template('expense/edit.html', form=form)
 
 
-@bp.route('/read_expense/', methods=['GET', 'POST'])
+@bp.route('/read_expense', methods=['GET', 'POST'])
 @login_required
 def read_expense():
     """
@@ -168,7 +169,7 @@ def read_expense():
     return render_template('expense/read.html')
 
 
-@bp.route('/delete_expense/', methods=['GET', 'POST'])
+@bp.route('/delete_expense', methods=['GET', 'POST'])
 @login_required
 def delete_expense():
 

@@ -1,1 +1,1 @@
-web: gunicorn auth:app
+web: gunicorn auth:Expense_Tracker

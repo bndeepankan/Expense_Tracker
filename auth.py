@@ -5,7 +5,7 @@ from flask import(
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
-from db import auth_db
+from .db import auth_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -67,7 +67,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = json.dumps(user[0]['_id'], cls=JSONEncoder)
-            return redirect(url_for('select_operation'))
+            return redirect(url_for('expense.select_operation'))
         
         flash(error)
     

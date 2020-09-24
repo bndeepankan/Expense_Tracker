@@ -3,7 +3,7 @@ This app implements a money tracking tool and exposes a RESTful API meant to be 
 """
 import os
 from flask import Flask, redirect, url_for
-from db import get_db
+from .db import get_db
 
 def create_app(test_config=None):
     # Create and configure the app
@@ -14,6 +14,10 @@ def create_app(test_config=None):
         SECRET_KEY='dev',
         DATABASE=os.path.join(app.instance_path, 'Expense_Tracker.mongo')
     )  
+
+    @app.route('/')
+    def index():
+        return "Hello World!!!"
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
@@ -34,6 +38,6 @@ def create_app(test_config=None):
     from .import expense
     app.register_blueprint(expense.bp)
     
-    app.add_url_rule('/', endpoint='select_operation')
+    app.add_url_rule('/select_expense', endpoint='select_operation')
 
     return app
