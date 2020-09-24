@@ -32,10 +32,10 @@ try:
 except OSError:
     pass
 
-from . import auth
+import auth
 app.register_blueprint(auth.bp)
 
-from .import expense
+import expense
 app.register_blueprint(expense.bp)
 
 app.add_url_rule('/select_expense', endpoint='select_operation')
