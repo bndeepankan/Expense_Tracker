@@ -1,1 +1,1 @@
-web: gunicorn Expense_Tracker:__init__.py
+web: gunicorn __init__:Expense_Tracker
