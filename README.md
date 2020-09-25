@@ -15,7 +15,7 @@ http://expense-tracker-dp.herokuapp.com/auth/login
 
 4. Delete a expense from the Mongodb.
 
-5. User authrization support is provided.
+5. User authorization support is provided.
 
 ## Development Server
 
