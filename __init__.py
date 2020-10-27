@@ -3,7 +3,7 @@ This app implements a money tracking tool and exposes a RESTful API meant to be 
 """
 import os
 from flask import Flask, redirect, url_for
-from .db import get_db
+from db import get_db
 
 app = Flask(__name__, instance_relative_config=True)
 
