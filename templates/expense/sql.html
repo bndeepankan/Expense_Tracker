@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Query Expense{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method="post">
+        <label for="sql">Write sql aggregate query. (keep table name as "tmp")</label>
+        <input name="sql" id="sql">
+        <div style="width:400px;">
+          <div style="float: left; width: 130px">
+              <input type="submit" value="Submit">
+          </div>
+          <div style="float: right; width: 225px">
+              <input type="submit" value="Menu" formaction="{{ url_for('expense.select_operation') }}">
+          </div>
+        </div>
+    </form>
+{% endblock %}

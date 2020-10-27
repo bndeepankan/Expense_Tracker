@@ -5,7 +5,6 @@ import os
 from flask import Flask, redirect, url_for
 from .db import get_db
 
-
 app = Flask(__name__, instance_relative_config=True)
 
 app.config.from_mapping(

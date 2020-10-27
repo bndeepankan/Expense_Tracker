@@ -9,6 +9,7 @@ from .table import Results, readResults, deleteResult
 from .forms import Expenseform
 from collections import defaultdict
 from bson import ObjectId
+from .spark_sql import sqlOperation
 
 bp = Blueprint('expense', __name__)
 
@@ -29,6 +30,8 @@ def select_operation():
             return redirect(url_for('expense.read_expense'))
         elif option == "delete":
             return redirect(url_for('expense.delete_expense'))
+        elif option == "sql":
+            return redirect(url_for('expense.query_expense'))
         else:
             flash("select checkbox")
     
@@ -55,7 +58,7 @@ def create_expense():
         elif not item:
             error = "item is required"
         if error is None:
-            get_db().insert_one({"user_id": session['user_id'], "date": date, "value": value, "item": item})
+            get_db().insert_one({"user_id": session['user_id'], "date": date, "value": value, "item": item.lower()})
             flash("The item has been added into the record")
             return redirect(url_for('expense.select_operation'))
         else:
@@ -124,7 +127,7 @@ def edit_expense(id):
         flash("Sorry your data cannot be changed!!!")
         return redirect(url_for('expense.select_operation'))
     if request.method == "POST":
-        get_db().find_one_and_update({"_id": ObjectId(id)}, {'$set': {'date': request.form["date"], 'value': request.form["value"], 'item': request.form["item"]}})
+        get_db().find_one_and_update({"_id": ObjectId(id)}, {'$set': {'date': request.form["date"], 'value': request.form["value"], 'item': request.form["item"].lower()}})
         flash("Data is successfully updated")
         return redirect(url_for('expense.select_operation'))
     return render_template('expense/edit.html', form=form)
@@ -150,7 +153,7 @@ def read_expense():
         if date:
             query['date'] = date
         elif item:
-            query['item'] = item
+            query['item'] = item.lower()
         
         try:
             results = db.find(query)
@@ -190,7 +193,7 @@ def delete_expense():
         if date:
             query['date'] = date
         elif item:
-            query['item'] = item
+            query['item'] = item.lower()
         
         try:
             results = db.find(query)
@@ -236,3 +239,29 @@ def remove_expense(id):
         return redirect(url_for('expense.select_operation'))         
 
     return render_template('expense/remove.html')
+
+@bp.route('/query_expense/', methods=['GET', 'POST'])
+@login_required
+def query_expense():
+    """
+    User writes sql query to search on the database
+    """
+
+    if request.method == 'POST':
+        sql = request.form["sql"]
+
+        error = None
+
+        if not sql:
+            error = "query is required"
+
+        if error is None:
+            obj = sqlOperation()
+            results = obj.searchQuery(sql, session['user_id'])
+            table = readResults(results)
+            table.border = True
+            return render_template('expense/table.html', table = table)
+        else:
+            flash(error)
+
+    return render_template('expense/sql.html')

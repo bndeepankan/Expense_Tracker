@@ -5,3 +5,4 @@ bson
 pymongo
 Flask-WTF
 dnspython
+pyspark
