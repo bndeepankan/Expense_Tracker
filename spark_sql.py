@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from db import mongoURI
+from .db import mongoURI
 import json
 
 class sqlOperation():
