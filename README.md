@@ -17,6 +17,8 @@ http://expense-tracker-dp.herokuapp.com/auth/login
 
 5. User authorization support is provided.
 
+6. User can write **SQL Query** to search in their transaction which is performed by **SPARK**. (Not available in Demo server)
+
 ## Development Server
 
 ``` 
